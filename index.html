@@ -1,0 +1,97 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="resources/jquery.min.js"></script>
+	<script src="resources/select2/select2.js"></script>
+	
+	<script src="formatter.js"></script>
+	<script src="resources/js-beautify-master/web/third-party/codemirror/lib/codemirror.js"></script>
+	<script src="resources/js-beautify-master/web/third-party/codemirror/mode/javascript/javascript.js"></script>
+	<script src="resources/js-beautify-master/web/third-party/codemirror/plugins/placeholder.js"></script>
+	<script src="resources/js-beautify-master/js/lib/beautify.js"></script>
+	<script src="resources/js-beautify-master/js/lib/beautify-css.js"></script>
+	<script src="resources/js-beautify-master/js/lib/beautify-html.js"></script>
+
+	<title>CODE MIRROR</title>
+
+	<link href='style.css' rel='stylesheet' type='text/css'>
+	<!-- <link href='resources/select2/select2.css' rel='stylesheet' type='text/css'> -->
+	<link href="resources/bst4/bootstrap.min.css" rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/3024-day.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/3024-night.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/ambiance.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/base16-dark.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/base16-light.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/blackboard.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/cobalt.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/eclipse.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/elegant.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/erlang-dark.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/lesser-dark.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/mbo.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/midnight.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/monokai.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/neat.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/night.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/paraiso-dark.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/paraiso-light.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/rubyblue.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/solarized.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/the-matrix.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/tomorrow-night-eighties.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/twilight.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/vibrant-ink.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/xq-dark.css">
+	<link rel="stylesheet" href="resources/js-beautify-master/web/third-party/codemirror/theme/xq-light.css">
+</head>
+<body>
+	<div class="container col-12 m-auto">
+		<h1 class="text-center txt-titulo"> < INDENTADOR DE CODIGO > </h1>
+		<div class="col-6 m-auto pb-3 form-group">
+			<label class="text-center full-w" for="select-theme">Selecione o Tema:</label>
+			<select class="form-control" id="select-theme" style="width:100%;">
+				<option selected>default</option>
+				<option>3024-day</option>
+				<option>3024-night</option>
+				<option>ambiance</option>
+				<option>base16-dark</option>
+				<option>base16-light</option>
+				<option>blackboard</option>
+				<option>cobalt</option>
+				<option>eclipse</option>
+				<option>elegant</option>
+				<option>erlang-dark</option>
+				<option>lesser-dark</option>
+				<option>mbo</option>
+				<option>midnight</option>
+				<option>monokai</option>
+				<option>neat</option>
+				<option>night</option>
+				<option>paraiso-dark</option>
+				<option>paraiso-light</option>
+				<option>rubyblue</option>
+				<option>solarized dark</option>
+				<option>solarized light</option>
+				<option>the-matrix</option>
+				<option>tomorrow-night-eighties</option>
+				<option>twilight</option>
+				<option>vibrant-ink</option>
+				<option>xq-dark</option>
+				<option>xq-light</option>
+			</select>
+
+		</div>		
+		<div class="code-holder">
+			<textarea class="form-control" id="source" placeholder="Cole seu codigo HTML/JS aqui..."></textarea>
+		</div>
+		<div class="actions-holder m-auto col-8">
+			<input id="formatBtn" class="btn btn-block btn-success button submit" value="INDENTAR" type="button" />
+			<input id="clearBtn" class="btn btn-block btn-danger button" value="LIMPAR" type="button" />
+		</div>
+	</div>
+	<script src="resources/bst4/bootstrap.min.js"></script>  	
+</body>
+</html>
